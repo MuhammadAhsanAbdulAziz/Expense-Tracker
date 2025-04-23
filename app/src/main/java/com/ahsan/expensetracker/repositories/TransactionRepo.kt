@@ -1,7 +1,7 @@
 package com.ahsan.expensetracker.repositories
 
 
-import com.ahsan.expensetracker.data.local.datastore.AppDatabase
+import com.ahsan.expensetracker.data.local.AppDatabase
 import com.ahsan.expensetracker.models.Transaction
 import javax.inject.Inject
 

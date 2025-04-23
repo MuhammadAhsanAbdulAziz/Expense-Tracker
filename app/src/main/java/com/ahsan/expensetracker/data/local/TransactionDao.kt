@@ -2,13 +2,14 @@ package com.ahsan.expensetracker.data.local
 
 import androidx.room.*
 import kotlinx.coroutines.flow.Flow
+import com.ahsan.expensetracker.models.Transaction
 
 @Dao
 interface TransactionDao {
 
     // used to insert new transaction
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insertTransaction(transaction: Transaction)
+    suspend fun insertTransaction(transaction:Transaction)
 
     // used to update existing transaction
     @Update(onConflict = OnConflictStrategy.REPLACE)

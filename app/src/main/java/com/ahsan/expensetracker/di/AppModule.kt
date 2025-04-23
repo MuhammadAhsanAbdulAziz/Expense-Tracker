@@ -2,7 +2,7 @@ package com.ahsan.expensetracker.di
 
 import android.content.Context
 import androidx.room.Room
-import com.ahsan.expensetracker.data.local.datastore.AppDatabase
+import com.ahsan.expensetracker.data.local.AppDatabase
 import com.ahsan.expensetracker.data.local.datastore.UIModeDataStore
 import com.ahsan.expensetracker.data.local.datastore.UIModeImpl
 import dagger.Module
