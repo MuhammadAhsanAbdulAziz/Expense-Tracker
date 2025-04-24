@@ -1,4 +1,4 @@
-package dev.spikeysanju.expensetracker.view.base
+package com.ahsan.expensetracker.view.base
 
 import android.content.Context
 import android.os.Bundle
@@ -9,7 +9,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.viewbinding.ViewBinding
-import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseFragment<VB : ViewBinding, VM : ViewModel> : Fragment() {
 

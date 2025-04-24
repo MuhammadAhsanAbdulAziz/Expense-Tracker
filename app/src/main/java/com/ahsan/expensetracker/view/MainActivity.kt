@@ -61,10 +61,10 @@ class MainActivity : AppCompatActivity() {
                 R.id.dashboardFragment -> {
                     supportActionBar!!.setDisplayShowTitleEnabled(false)
                 }
-//                R.id.addTransactionFragment -> {
-//                    supportActionBar!!.setDisplayShowTitleEnabled(true)
-//                    binding.toolbar.title = getString(R.string.text_add_transaction)
-//                }
+                R.id.addTransactionFragment -> {
+                    supportActionBar!!.setDisplayShowTitleEnabled(true)
+                    binding.toolbar.title = getString(R.string.text_add_transaction)
+                }
                 else -> {
                     supportActionBar!!.setDisplayShowTitleEnabled(true)
                 }

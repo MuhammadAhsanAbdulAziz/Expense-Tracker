@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("plugin.serialization") version "2.0.21"
     id("kotlin-kapt")
+    id("androidx.navigation.safeargs")
     id("com.google.dagger.hilt.android")
 }
 

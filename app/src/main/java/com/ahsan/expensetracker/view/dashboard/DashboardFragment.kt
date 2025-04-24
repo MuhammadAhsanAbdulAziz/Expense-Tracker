@@ -1,9 +1,7 @@
 package com.ahsan.expensetracker.view.dashboard
 
-import action
 import android.Manifest
 import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -33,9 +31,8 @@ import com.ahsan.expensetracker.utils.viewState.ViewState
 import com.ahsan.expensetracker.viewmodels.TransactionViewModel
 import com.google.android.material.snackbar.Snackbar
 import dagger.hilt.android.AndroidEntryPoint
-import dev.spikeysanju.expensetracker.view.base.BaseFragment
+import com.ahsan.expensetracker.view.base.BaseFragment
 import hide
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.first
 import pakistaniRupee
 import show
@@ -200,7 +197,7 @@ class DashboardFragment :
 
     private fun initViews() = with(binding) {
         btnAddTransaction.setOnClickListener {
-//            findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
+            findNavController().navigate(R.id.action_dashboardFragment_to_addTransactionFragment)
         }
 
         mainDashboardScrollView.setOnScrollChangeListener(
@@ -218,10 +215,10 @@ class DashboardFragment :
             val bundle = Bundle().apply {
                 putSerializable("transaction", it)
             }
-//            findNavController().navigate(
-//                R.id.action_dashboardFragment_to_transactionDetailsFragment,
-//                bundle
-//            )
+            findNavController().navigate(
+                R.id.action_dashboardFragment_to_transactionDetailsFragment,
+                bundle
+            )
         }
     }
 

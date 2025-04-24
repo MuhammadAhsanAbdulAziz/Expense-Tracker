@@ -7,13 +7,13 @@
     <string name="text_total_balance">Total Balance</string>
     <string name="text_recent_transactions">Recent Transactions</string>
     <string name="text_view_all">View all</string>
-    <string name="text_expense_when">When</string>
+    <string name="text_expense_when">Date</string>
     <string name="text_expense_amount">Amount</string>
     <string name="text_expense_transaction_type">Transaction type</string>
-    <string name="text_expense_tag">Tag</string>
-    <string name="text_expense_note">Note</string>
+    <string name="text_expense_tag">Category</string>
+    <string name="text_expense_note">Description</string>
     <string name="text_expense_add_transaction">Save Transaction</string>
-    <string name="text_expense_rupees">₹</string>
+    <string name="text_expense_rupees">Rs</string>
     <string name="success_expense_saved">Transaction saved successfully</string>
     <string name="success_transaction_delete">Transaction deleted successfully!</string>
     <string name="text_title">Title</string>
@@ -29,12 +29,7 @@
     <string name="support_pending">Support for export on Android10+ is still in progress, kindly be patient and thanks for support!</string>
     <string name="text_open">Open</string>
 
-    <!--  About -->
-    <string name="text_about_license_title"><![CDATA[Attributions & License]]></string>
-    <string name="text_about_license">Licensed Under Apache 2.0 License</string>
-    <string name="text_about_visit_title">Visit</string>
-    <string name="text_about_visit_url"><u>https://github.com/Spikeysanju/Expenso</u></string>
-    <string name="text_app_version">v%s (%d)</string>
+
     <string name="text_share_as_text">Share as Text</string>
     <string name="text_share_as_image">Share as Image</string>
     <string name="text_delete">Delete</string>
