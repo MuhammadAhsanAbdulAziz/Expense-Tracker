@@ -17,10 +17,6 @@
             <item
                 android:id="@+id/action_share_text"
                 android:title="@string/text_share_as_text" />
-
-            <item
-                android:id="@+id/action_share_image"
-                android:title="@string/text_share_as_image" />
         </menu>
     </item>
 

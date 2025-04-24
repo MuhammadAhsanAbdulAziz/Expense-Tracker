@@ -23,7 +23,6 @@ import cleanTextContent
 import com.ahsan.expensetracker.R
 import com.ahsan.expensetracker.databinding.FragmentTransactionDetailsBinding
 import com.ahsan.expensetracker.models.Transaction
-import com.ahsan.expensetracker.utils.saveBitmap
 import com.ahsan.expensetracker.utils.viewState.DetailState
 import com.ahsan.expensetracker.viewmodels.TransactionViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -37,20 +36,6 @@ import snack
 class TransactionDetailsFragment : BaseFragment<FragmentTransactionDetailsBinding, TransactionViewModel>() {
     private val args: TransactionDetailsFragmentArgs by navArgs()
     override val viewModel: TransactionViewModel by activityViewModels()
-
-    // handle permission dialog
-    private val requestLauncher =
-        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted ->
-            if (isGranted) shareImage() else showErrorDialog()
-        }
-
-    private fun showErrorDialog() =
-        findNavController().navigate(
-            TransactionDetailsFragmentDirections.actionTransactionDetailsFragmentToErrorDialog(
-                "Image share failed!",
-                "You have to enable storage permission to share transaction as Image"
-            )
-        )
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -124,51 +109,10 @@ class TransactionDetailsFragment : BaseFragment<FragmentTransactionDetailsBindin
                     }
             }
             R.id.action_share_text -> shareText()
-            R.id.action_share_image -> shareImage()
         }
         return super.onOptionsItemSelected(item)
     }
 
-    private fun shareImage() {
-        if (!isStoragePermissionGranted()) {
-            requestLauncher.launch(Manifest.permission.WRITE_EXTERNAL_STORAGE)
-            return
-        }
-
-        // unHide the app logo and name
-        showAppNameAndLogo()
-        val imageURI = binding.transactionDetails.detailView.drawToBitmap().let { bitmap ->
-            hideAppNameAndLogo()
-            saveBitmap(requireActivity(), bitmap)
-        } ?: run {
-            binding.root.snack(
-                string = R.string.text_error_occurred
-            )
-            return
-        }
-
-        val intent = ShareCompat.IntentBuilder(requireActivity())
-            .setType("image/jpeg")
-            .setStream(imageURI)
-            .intent
-
-        startActivity(Intent.createChooser(intent, null))
-    }
-
-    private fun showAppNameAndLogo() = with(binding.transactionDetails) {
-        appIconForShare.show()
-        appNameForShare.show()
-    }
-
-    private fun hideAppNameAndLogo() = with(binding.transactionDetails) {
-        appIconForShare.hide()
-        appNameForShare.hide()
-    }
-
-    private fun isStoragePermissionGranted(): Boolean = ContextCompat.checkSelfPermission(
-        requireContext(),
-        Manifest.permission.WRITE_EXTERNAL_STORAGE
-    ) == PackageManager.PERMISSION_GRANTED
 
     @SuppressLint("StringFormatMatches")
     private fun shareText() = with(binding) {
