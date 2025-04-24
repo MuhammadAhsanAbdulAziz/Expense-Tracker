@@ -1,6 +1,5 @@
 package com.ahsan.expensetracker.viewmodels
 
-import android.net.Uri
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -8,17 +7,12 @@ import com.ahsan.expensetracker.data.local.datastore.UIModeImpl
 import com.ahsan.expensetracker.models.Transaction
 import com.ahsan.expensetracker.repositories.TransactionRepo
 import com.ahsan.expensetracker.utils.viewState.DetailState
+import com.ahsan.expensetracker.utils.viewState.SummaryState
 import com.ahsan.expensetracker.utils.viewState.ViewState
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Dispatchers.IO
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.collect
-import kotlinx.coroutines.flow.flatMapMerge
-import kotlinx.coroutines.flow.flowOn
-import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -34,6 +28,9 @@ class TransactionViewModel @Inject constructor(
     private val _uiState = MutableStateFlow<ViewState>(ViewState.Loading)
     private val _detailState = MutableStateFlow<DetailState>(DetailState.Loading)
 
+    private val _summaryState = MutableStateFlow<SummaryState>(SummaryState.Loading)
+    val summaryState: StateFlow<SummaryState> = _summaryState
+
     // UI collect from this stateFlow to get the state updates
     val uiState: StateFlow<ViewState> = _uiState
     val detailState: StateFlow<DetailState> = _detailState
@@ -45,6 +42,18 @@ class TransactionViewModel @Inject constructor(
     fun setDarkMode(isNightMode: Boolean) {
         viewModelScope.launch(IO) {
             uiModeDataStore.saveToDataStore(isNightMode)
+        }
+    }
+
+    fun loadSummary() {
+        viewModelScope.launch {
+            try {
+                val income = transactionRepo.getTotalIncome()
+                val expense = transactionRepo.getTotalExpense()
+                _summaryState.value = SummaryState.Success(income, expense)
+            } catch (e: Exception) {
+                _summaryState.value = SummaryState.Error("Failed to load summary")
+            }
         }
     }
 

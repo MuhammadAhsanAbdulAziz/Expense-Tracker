@@ -290,6 +290,10 @@ class DashboardFragment :
                 setUIMode(item, item.isChecked)
                 true
             }
+            R.id.summary -> {
+                findNavController().navigate(R.id.action_dashboardFragment_to_summaryFragment)
+                true
+            }
             else -> super.onOptionsItemSelected(item)
         }
     }

@@ -24,6 +24,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_dashboardFragment_to_summaryFragment"
+            app:destination="@id/summaryFragment" />
     </fragment>
     <fragment
         android:id="@+id/addTransactionFragment"
@@ -79,4 +82,9 @@
             android:name="message"
             app:argType="string" />
     </dialog>
+    <fragment
+        android:id="@+id/summaryFragment"
+        android:name="com.ahsan.expensetracker.view.summary.SummaryFragment"
+        android:label="fragment_summary"
+        tools:layout="@layout/fragment_summary" />
 </navigation>

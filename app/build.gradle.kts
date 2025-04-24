@@ -80,5 +80,7 @@ dependencies {
     implementation("com.google.dagger:hilt-android:2.56.1")
     kapt("com.google.dagger:hilt-android-compiler:2.56.1")
 
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
+
 
 }

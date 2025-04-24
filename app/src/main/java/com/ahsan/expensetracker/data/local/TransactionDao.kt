@@ -34,4 +34,10 @@ interface TransactionDao {
     // delete transaction by id
     @Query("DELETE FROM all_transactions WHERE id = :id")
     suspend fun deleteTransactionByID(id: Int)
+
+    @Query("SELECT SUM(amount) FROM all_transactions WHERE transactionType = 'Income'")
+    suspend fun getTotalIncome(): Double?
+
+    @Query("SELECT SUM(amount) FROM all_transactions WHERE transactionType = 'Expense'")
+    suspend fun getTotalExpense(): Double?
 }

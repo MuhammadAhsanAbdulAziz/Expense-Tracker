@@ -65,6 +65,10 @@ class MainActivity : AppCompatActivity() {
                     supportActionBar!!.setDisplayShowTitleEnabled(true)
                     binding.toolbar.title = getString(R.string.text_add_transaction)
                 }
+                R.id.summaryFragment -> {
+                    supportActionBar!!.setDisplayShowTitleEnabled(true)
+                    binding.toolbar.title = getString(R.string.text_summary)
+                }
                 else -> {
                     supportActionBar!!.setDisplayShowTitleEnabled(true)
                 }
